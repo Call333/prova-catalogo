@@ -12,4 +12,5 @@ export class CategoriasController {
     // Dica: "amarre" o this dos métodos usados como callback nas rotas.
   }
   // TODO: implemente index, nova, criar.
+  
 }

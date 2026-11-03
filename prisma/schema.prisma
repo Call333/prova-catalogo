@@ -23,3 +23,18 @@ datasource db {
 
 // TODO: model Categoria { ... }
 // TODO: model Produto   { ... }
+
+model Categoria {
+  id    @Int @Id @Unique
+  nome    @String @NotNull
+  
+  @@map('categoria')
+}
+
+model Produto {
+  id    @Int @Id @Unique
+  nome    @String @NotNull
+  preco    @Float @NotNull
+
+  @@map('produto')
+}

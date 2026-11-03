@@ -9,4 +9,12 @@ import { prisma } from '../config/database.js';
 // Dica: use `prisma.produto.*`. Tudo é assíncrono.
 export class ProdutosRepositoryPrisma {
   // TODO: implemente os métodos descritos acima.
+
+  async findAll() {
+    return await this.prisma.produto.findAll();
+  }
+
+  async findById() {
+    return await this.prisma.
+  }
 }
