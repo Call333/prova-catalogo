@@ -16,4 +16,28 @@ export class ProdutosService {
     this.categoriasRepo = categoriasRepository; // para checar se a categoria existe
   }
   // TODO: criar(dados), listar().
+
+  async listar() {
+    return await this.repo.findAll();
+  }
+
+  async criar(dados) {
+    const categorias = await this.categoriasRepo.findAll();
+
+    categorias.array.forEach(element => {
+      if(element.nome !== dados.categorias.nome){
+        throw new AppError('A categoria do produto não existe.', 422);
+      }
+    });
+
+    if(!dados.preco > 0) {
+      throw new AppError('O preço do produto precisa maior que zero.', 422);
+    }
+
+    if(!dados.nome) {
+      throw new AppError('O nome do produto precisa estar preenchido.', 422);
+    }
+
+    return await this.repo.create(dados);
+  }
 }
