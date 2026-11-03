@@ -11,4 +11,16 @@ export class CategoriasService {
     this.repo = categoriasRepository;
   }
   // TODO: criar(dados), listar().
+
+  async listar() {
+    return await this.categoriasRepository.findAll();
+  }
+
+  async criar(dados) {
+    if(!dados.nome) {
+      throw new AppError('O nome não foi preenchido', 404);
+    }
+
+    return await this.categoriasRepository.create(dados);
+  }
 }
