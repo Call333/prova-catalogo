@@ -11,10 +11,22 @@ export class ProdutosRepositoryPrisma {
   // TODO: implemente os métodos descritos acima.
 
   async findAll() {
-    return await this.prisma.produto.findAll();
+    return await this.prisma.produto.findAll(
+      { include: prisma.categoria }
+    );
   }
 
   async findById() {
-    return await this.prisma.
+    return await this.prisma.produto.findById(
+      { include: prisma.categoria }
+    );
+  }
+
+  async create(dados) {
+    return await this.prisma.produto.create({
+      nome: dados.nome,
+      preco: dados.preco,
+      categoria: dados.categoria
+    });
   }
 }
