@@ -12,5 +12,26 @@ export class CategoriasController {
     // Dica: "amarre" o this dos métodos usados como callback nas rotas.
   }
   // TODO: implemente index, nova, criar.
-  
+  index = async (req, res) => {
+    const categorias = await this.service.listar();
+
+    res.render('/categorias', { categorias }  );
+  }
+
+  nova = async (req, res) => {
+    res.render('/categorias/nova');
+  }
+
+  criar = async (req, res) => {
+    const { nome } = req.body;
+
+    dados = {
+      id: 0,
+      nome: nome,
+    }
+
+    await this.service.criar(dados);
+
+    res.redirect('/categorias');
+  }
 }
